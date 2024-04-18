@@ -42,6 +42,7 @@ namespace MyShopesms
             this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.shopidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.matirailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.matirailsBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -155,12 +156,22 @@ namespace MyShopesms
             // 
             this.matirailsBindingSource.DataSource = typeof(MyShopesms.Matirails);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(861, 37);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(25, 65);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // FEXmatirials
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "FEXmatirials";
             this.Text = "الاصناف المنتهية الصلاحية";
@@ -185,5 +196,6 @@ namespace MyShopesms
         private System.Windows.Forms.DataGridViewTextBoxColumn userIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn userNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn shopidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button button1;
     }
 }
