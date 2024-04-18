@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="smsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Procedures">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Procedure_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="InvoiceNo" Type="Int64" Nullable="false" />
+    <Property Name="Ammount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="User_Id" Type="Int64" Nullable="false" />
+    <Property Name="User_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ddate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ShopId" Type="Int64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Shops">
+    <Key>
+      <PropertyRef Name="Shopid" />
+    </Key>
+    <Property Name="Shopid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Shopname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="dbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Procedures" EntityType="Self.Procedures" />
+    <EntitySet Name="Shops" EntityType="Self.Shops" />
+    <EntitySet Name="Users" EntityType="smsModel.Users" />
+    <EntitySet Name="BuingInvoice" EntityType="smsModel.BuingInvoice" />
+    <EntitySet Name="BuingView" EntityType="smsModel.BuingView" />
+    <EntitySet Name="SalesView" EntityType="smsModel.SalesView" />
+    <EntitySet Name="ViewAllBalance" EntityType="smsModel.ViewAllBalance" />
+    <EntitySet Name="UserPayment" EntityType="smsModel.UserPayment" />
+    <EntitySet Name="HDD" EntityType="smsModel.HDD" />
+    <FunctionImport Name="MaxInvoice">
+      <Parameter Name="shopId" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="MaxInvoice1" ReturnType="Collection(Int64)">
+      <Parameter Name="shopId" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="MaxInvoice2" ReturnType="Collection(Int64)">
+      <Parameter Name="shopId" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="SalesSum" ReturnType="Collection(Decimal)">
+      <Parameter Name="ShopId" Mode="In" Type="Int64" />
+      <Parameter Name="Userid" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="Get_Matirials" ReturnType="Collection(smsModel.Get_Matirials_Result)" />
+    <FunctionImport Name="Get_Matirials1" ReturnType="Collection(smsModel.Get_Matirials1_Result)">
+      <Parameter Name="ShopId" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <EntitySet Name="Matirails" EntityType="smsModel.Matirails" />
+    <EntitySet Name="SalesInvoice" EntityType="smsModel.SalesInvoice" />
+  </EntityContainer>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="User_ID" />
+    </Key>
+    <Property Name="User_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ShopId" Type="Int32" Nullable="false" />
+    <Property Name="ShopName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BuingInvoice">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InvoiceNo" Type="Int64" Nullable="false" />
+    <Property Name="MatirialBarcode" Type="Int64" Nullable="false" />
+    <Property Name="MatirialName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Pricein" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="PriceOut" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Total" Type="Decimal" Precision="19" Scale="4" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="exDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="User_Id" Type="Int64" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Shopid" Type="Int32" Nullable="false" />
+    <Property Name="Ddate" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="BuingView">
+    <Key>
+      <PropertyRef Name="MatirialBarcode" />
+      <PropertyRef Name="MatirialName" />
+      <PropertyRef Name="Shopid" />
+    </Key>
+    <Property Name="MatirialBarcode" Type="Int64" Nullable="false" />
+    <Property Name="MatirialName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Quantity" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="Shopid" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SalesView">
+    <Key>
+      <PropertyRef Name="MatiralBarcode" />
+      <PropertyRef Name="MatiralName" />
+      <PropertyRef Name="Shopid" />
+    </Key>
+    <Property Name="MatiralBarcode" Type="Int64" Nullable="false" />
+    <Property Name="MatiralName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Quantity" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="Shopid" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ViewAllBalance">
+    <Key>
+      <PropertyRef Name="MatirialBarcode" />
+      <PropertyRef Name="MatirialName" />
+      <PropertyRef Name="Pricein" />
+      <PropertyRef Name="Shopid" />
+    </Key>
+    <Property Name="MatirialBarcode" Type="Int64" Nullable="false" />
+    <Property Name="MatirialName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Pricein" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Shopid" Type="Int32" Nullable="false" />
+    <Property Name="BuingQuantity" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="SalesQuantity" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="TotalOfQuantity" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="Balanco" Type="Decimal" Precision="38" Scale="4" />
+  </EntityType>
+  <EntityType Name="UserPayment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int64" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Ddate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Ammount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="ShopId" Type="Int64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HDD">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HardDiskNo" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <ComplexType Name="Get_Matirials_Result">
+    <Property Type="Int64" Name="ID" Nullable="false" />
+    <Property Type="Int64" Name="MatirialBarcode" Nullable="false" />
+    <Property Type="String" Name="MatirialName" Nullable="false" MaxLength="100" />
+    <Property Type="Decimal" Name="Pricein" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="PriceOut" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="Profit" Nullable="false" Precision="19" />
+    <Property Type="DateTime" Name="exDate" Nullable="false" />
+    <Property Type="Int64" Name="User_ID" Nullable="false" />
+    <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="Shopid" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Get_Matirials1_Result">
+    <Property Type="Int64" Name="ID" Nullable="false" />
+    <Property Type="Int64" Name="MatirialBarcode" Nullable="false" />
+    <Property Type="String" Name="MatirialName" Nullable="false" MaxLength="100" />
+    <Property Type="Decimal" Name="Pricein" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="PriceOut" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="Profit" Nullable="false" Precision="19" />
+    <Property Type="DateTime" Name="exDate" Nullable="false" />
+    <Property Type="Int64" Name="User_ID" Nullable="false" />
+    <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="Shopid" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="Matirails">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MatirialBarcode" Type="Int64" Nullable="false" />
+    <Property Name="MatirialName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Pricein" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="PriceOut" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Profit" Type="Decimal" Precision="19" Scale="4" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="exDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="User_ID" Type="Int64" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Shopid" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SalesInvoice">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InvoiceNo" Type="Int64" Nullable="false" />
+    <Property Name="MatiralBarcode" Type="Int64" Nullable="false" />
+    <Property Name="MatiralName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Total_" Type="Decimal" Precision="19" Scale="4" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Profit_One_Item" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Total_Profits" Type="Decimal" Precision="19" Scale="4" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Ddate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="User_ID" Type="Int64" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Shopid" Type="Int32" Nullable="false" />
+    <Property Name="CashOrCredit" Type="Int32" Nullable="false" />
+  </EntityType>
+</Schema>

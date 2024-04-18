@@ -1,0 +1,566 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="smsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BuingInvoice">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InvoiceNo" Type="bigint" Nullable="false" />
+          <Property Name="MatirialBarcode" Type="bigint" Nullable="false" />
+          <Property Name="MatirialName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Quantity" Type="money" Nullable="false" />
+          <Property Name="Pricein" Type="money" Nullable="false" />
+          <Property Name="PriceOut" Type="money" Nullable="false" />
+          <Property Name="Total" Type="money" StoreGeneratedPattern="Computed" />
+          <Property Name="exDate" Type="date" Nullable="false" />
+          <Property Name="User_Id" Type="bigint" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Shopid" Type="int" Nullable="false" />
+          <Property Name="Ddate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HDD">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HardDiskNo" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Matirails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MatirialBarcode" Type="bigint" Nullable="false" />
+          <Property Name="MatirialName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Pricein" Type="money" Nullable="false" />
+          <Property Name="PriceOut" Type="money" Nullable="false" />
+          <Property Name="Profit" Type="money" StoreGeneratedPattern="Computed" />
+          <Property Name="exDate" Type="date" Nullable="false" />
+          <Property Name="User_ID" Type="bigint" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Shopid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Procedures">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Procedure_type" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="InvoiceNo" Type="bigint" Nullable="false" />
+          <Property Name="Ammount" Type="money" Nullable="false" />
+          <Property Name="User_Id" Type="bigint" Nullable="false" />
+          <Property Name="User_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ddate" Type="datetime" Nullable="false" />
+          <Property Name="ShopId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SalesInvoice">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InvoiceNo" Type="bigint" Nullable="false" />
+          <Property Name="MatiralBarcode" Type="bigint" Nullable="false" />
+          <Property Name="MatiralName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Quantity" Type="money" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="Total_" Type="money" StoreGeneratedPattern="Computed" />
+          <Property Name="Profit_One_Item" Type="money" Nullable="false" />
+          <Property Name="Total_Profits" Type="money" StoreGeneratedPattern="Computed" />
+          <Property Name="Ddate" Type="date" Nullable="false" />
+          <Property Name="User_ID" Type="bigint" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Shopid" Type="int" Nullable="false" />
+          <Property Name="CashOrCredit" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Shops">
+          <Key>
+            <PropertyRef Name="Shopid" />
+          </Key>
+          <Property Name="Shopid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Shopname" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserPayment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="bigint" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ddate" Type="date" Nullable="false" />
+          <Property Name="Ammount" Type="money" Nullable="false" />
+          <Property Name="ShopId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ShopId" Type="int" Nullable="false" />
+          <Property Name="ShopName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'sms.dbo.BuingView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="BuingView">
+          <Key>
+            <PropertyRef Name="MatirialBarcode" />
+            <PropertyRef Name="MatirialName" />
+            <PropertyRef Name="Shopid" />
+          </Key>
+          <Property Name="MatirialBarcode" Type="bigint" Nullable="false" />
+          <Property Name="MatirialName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Quantity" Type="decimal" Precision="38" Scale="0" />
+          <Property Name="Shopid" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'sms.dbo.SalesView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SalesView">
+          <Key>
+            <PropertyRef Name="MatiralBarcode" />
+            <PropertyRef Name="MatiralName" />
+            <PropertyRef Name="Shopid" />
+          </Key>
+          <Property Name="MatiralBarcode" Type="bigint" Nullable="false" />
+          <Property Name="MatiralName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Quantity" Type="decimal" Precision="38" Scale="0" />
+          <Property Name="Shopid" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'sms.dbo.ViewAllBalance' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewAllBalance">
+          <Key>
+            <PropertyRef Name="MatirialBarcode" />
+            <PropertyRef Name="MatirialName" />
+            <PropertyRef Name="Pricein" />
+            <PropertyRef Name="Shopid" />
+          </Key>
+          <Property Name="MatirialBarcode" Type="bigint" Nullable="false" />
+          <Property Name="MatirialName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Pricein" Type="money" Nullable="false" />
+          <Property Name="Shopid" Type="int" Nullable="false" />
+          <Property Name="BuingQuantity" Type="decimal" Precision="38" Scale="0" />
+          <Property Name="SalesQuantity" Type="decimal" Precision="38" Scale="0" />
+          <Property Name="TotalOfQuantity" Type="decimal" Precision="38" Scale="0" />
+          <Property Name="Balanco" Type="decimal" Precision="38" Scale="4" />
+        </EntityType>
+        <Function Name="MaxInvoice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="shopId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="SalesSum" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ShopId" Type="bigint" Mode="In" />
+          <Parameter Name="Userid" Type="bigint" Mode="In" />
+        </Function>
+        <EntityContainer Name="smsModelStoreContainer">
+          <EntitySet Name="BuingInvoice" EntityType="Self.BuingInvoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HDD" EntityType="Self.HDD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Matirails" EntityType="Self.Matirails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Procedures" EntityType="Self.Procedures" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SalesInvoice" EntityType="Self.SalesInvoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shops" EntityType="Self.Shops" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserPayment" EntityType="Self.UserPayment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BuingView" EntityType="Self.BuingView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [BuingView].[MatirialBarcode] AS [MatirialBarcode], 
+    [BuingView].[MatirialName] AS [MatirialName], 
+    [BuingView].[Quantity] AS [Quantity], 
+    [BuingView].[Shopid] AS [Shopid]
+    FROM [dbo].[BuingView] AS [BuingView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SalesView" EntityType="Self.SalesView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SalesView].[MatiralBarcode] AS [MatiralBarcode], 
+    [SalesView].[MatiralName] AS [MatiralName], 
+    [SalesView].[Quantity] AS [Quantity], 
+    [SalesView].[Shopid] AS [Shopid]
+    FROM [dbo].[SalesView] AS [SalesView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewAllBalance" EntityType="Self.ViewAllBalance" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewAllBalance].[MatirialBarcode] AS [MatirialBarcode], 
+    [ViewAllBalance].[MatirialName] AS [MatirialName], 
+    [ViewAllBalance].[Pricein] AS [Pricein], 
+    [ViewAllBalance].[Shopid] AS [Shopid], 
+    [ViewAllBalance].[BuingQuantity] AS [BuingQuantity], 
+    [ViewAllBalance].[SalesQuantity] AS [SalesQuantity], 
+    [ViewAllBalance].[TotalOfQuantity] AS [TotalOfQuantity], 
+    [ViewAllBalance].[Balanco] AS [Balanco]
+    FROM [dbo].[ViewAllBalance] AS [ViewAllBalance]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="smsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Procedures">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Procedure_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="InvoiceNo" Type="Int64" Nullable="false" />
+          <Property Name="Ammount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="User_Id" Type="Int64" Nullable="false" />
+          <Property Name="User_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ddate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ShopId" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Shops">
+          <Key>
+            <PropertyRef Name="Shopid" />
+          </Key>
+          <Property Name="Shopid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Shopname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="dbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Procedures" EntityType="Self.Procedures" />
+          <EntitySet Name="Shops" EntityType="Self.Shops" />
+          <EntitySet Name="Users" EntityType="smsModel.Users" />
+          <EntitySet Name="BuingInvoice" EntityType="smsModel.BuingInvoice" />
+          <EntitySet Name="BuingView" EntityType="smsModel.BuingView" />
+          <EntitySet Name="SalesView" EntityType="smsModel.SalesView" />
+          <EntitySet Name="ViewAllBalance" EntityType="smsModel.ViewAllBalance" />
+          <EntitySet Name="UserPayment" EntityType="smsModel.UserPayment" />
+          <EntitySet Name="HDD" EntityType="smsModel.HDD" />
+          <FunctionImport Name="MaxInvoice">
+            <Parameter Name="shopId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="MaxInvoice1" ReturnType="Collection(Int64)">
+            <Parameter Name="shopId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="MaxInvoice2" ReturnType="Collection(Int64)">
+          <Parameter Name="shopId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="SalesSum" ReturnType="Collection(Decimal)">
+            <Parameter Name="ShopId" Mode="In" Type="Int64" />
+            <Parameter Name="Userid" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="Get_Matirials" ReturnType="Collection(smsModel.Get_Matirials_Result)" />
+          <FunctionImport Name="Get_Matirials1" ReturnType="Collection(smsModel.Get_Matirials1_Result)">
+          <Parameter Name="ShopId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <EntitySet Name="Matirails" EntityType="smsModel.Matirails" />
+          <EntitySet Name="SalesInvoice" EntityType="smsModel.SalesInvoice" />
+        </EntityContainer>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShopId" Type="Int32" Nullable="false" />
+          <Property Name="ShopName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="BuingInvoice">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InvoiceNo" Type="Int64" Nullable="false" />
+          <Property Name="MatirialBarcode" Type="Int64" Nullable="false" />
+          <Property Name="MatirialName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Pricein" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="PriceOut" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Total" Type="Decimal" Precision="19" Scale="4" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="exDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="User_Id" Type="Int64" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Shopid" Type="Int32" Nullable="false" />
+          <Property Name="Ddate" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="BuingView">
+          <Key>
+            <PropertyRef Name="MatirialBarcode" />
+            <PropertyRef Name="MatirialName" />
+            <PropertyRef Name="Shopid" />
+          </Key>
+          <Property Name="MatirialBarcode" Type="Int64" Nullable="false" />
+          <Property Name="MatirialName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="Shopid" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SalesView">
+          <Key>
+            <PropertyRef Name="MatiralBarcode" />
+            <PropertyRef Name="MatiralName" />
+            <PropertyRef Name="Shopid" />
+          </Key>
+          <Property Name="MatiralBarcode" Type="Int64" Nullable="false" />
+          <Property Name="MatiralName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="Shopid" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ViewAllBalance">
+          <Key>
+            <PropertyRef Name="MatirialBarcode" />
+            <PropertyRef Name="MatirialName" />
+            <PropertyRef Name="Pricein" />
+            <PropertyRef Name="Shopid" />
+          </Key>
+          <Property Name="MatirialBarcode" Type="Int64" Nullable="false" />
+          <Property Name="MatirialName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Pricein" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Shopid" Type="Int32" Nullable="false" />
+          <Property Name="BuingQuantity" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="SalesQuantity" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="TotalOfQuantity" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="Balanco" Type="Decimal" Precision="38" Scale="4" />
+        </EntityType>
+        <EntityType Name="UserPayment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int64" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Ddate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Ammount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="ShopId" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HDD">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HardDiskNo" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="Get_Matirials_Result">
+          <Property Type="Int64" Name="ID" Nullable="false" />
+          <Property Type="Int64" Name="MatirialBarcode" Nullable="false" />
+          <Property Type="String" Name="MatirialName" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="Pricein" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="PriceOut" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="Profit" Nullable="false" Precision="19" />
+          <Property Type="DateTime" Name="exDate" Nullable="false" />
+          <Property Type="Int64" Name="User_ID" Nullable="false" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Shopid" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Get_Matirials1_Result">
+          <Property Type="Int64" Name="ID" Nullable="false" />
+          <Property Type="Int64" Name="MatirialBarcode" Nullable="false" />
+          <Property Type="String" Name="MatirialName" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="Pricein" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="PriceOut" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="Profit" Nullable="false" Precision="19" />
+          <Property Type="DateTime" Name="exDate" Nullable="false" />
+          <Property Type="Int64" Name="User_ID" Nullable="false" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Shopid" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="Matirails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MatirialBarcode" Type="Int64" Nullable="false" />
+          <Property Name="MatirialName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Pricein" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="PriceOut" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Profit" Type="Decimal" Precision="19" Scale="4" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="exDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="User_ID" Type="Int64" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Shopid" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SalesInvoice">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InvoiceNo" Type="Int64" Nullable="false" />
+          <Property Name="MatiralBarcode" Type="Int64" Nullable="false" />
+          <Property Name="MatiralName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Total_" Type="Decimal" Precision="19" Scale="4" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Profit_One_Item" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Total_Profits" Type="Decimal" Precision="19" Scale="4" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Ddate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="User_ID" Type="Int64" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Shopid" Type="Int32" Nullable="false" />
+          <Property Name="CashOrCredit" Type="Int32" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="smsModelStoreContainer" CdmEntityContainer="dbEntities">
+          <EntitySetMapping Name="Procedures">
+            <EntityTypeMapping TypeName="smsModel.Procedures">
+              <MappingFragment StoreEntitySet="Procedures">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Procedure_type" ColumnName="Procedure_type" />
+                <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+                <ScalarProperty Name="Ammount" ColumnName="Ammount" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+                <ScalarProperty Name="ddate" ColumnName="ddate" />
+                <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shops">
+            <EntityTypeMapping TypeName="smsModel.Shops">
+              <MappingFragment StoreEntitySet="Shops">
+                <ScalarProperty Name="Shopid" ColumnName="Shopid" />
+                <ScalarProperty Name="Shopname" ColumnName="Shopname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="smsModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ShopName" ColumnName="ShopName" />
+                <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BuingInvoice">
+            <EntityTypeMapping TypeName="smsModel.BuingInvoice">
+              <MappingFragment StoreEntitySet="BuingInvoice">
+                <ScalarProperty Name="Ddate" ColumnName="Ddate" />
+                <ScalarProperty Name="Shopid" ColumnName="Shopid" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="exDate" ColumnName="exDate" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="PriceOut" ColumnName="PriceOut" />
+                <ScalarProperty Name="Pricein" ColumnName="Pricein" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="MatirialName" ColumnName="MatirialName" />
+                <ScalarProperty Name="MatirialBarcode" ColumnName="MatirialBarcode" />
+                <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BuingView">
+            <EntityTypeMapping TypeName="smsModel.BuingView">
+              <MappingFragment StoreEntitySet="BuingView">
+                <ScalarProperty Name="Shopid" ColumnName="Shopid" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="MatirialName" ColumnName="MatirialName" />
+                <ScalarProperty Name="MatirialBarcode" ColumnName="MatirialBarcode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalesView">
+            <EntityTypeMapping TypeName="smsModel.SalesView">
+              <MappingFragment StoreEntitySet="SalesView">
+                <ScalarProperty Name="Shopid" ColumnName="Shopid" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="MatiralName" ColumnName="MatiralName" />
+                <ScalarProperty Name="MatiralBarcode" ColumnName="MatiralBarcode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewAllBalance">
+            <EntityTypeMapping TypeName="smsModel.ViewAllBalance">
+              <MappingFragment StoreEntitySet="ViewAllBalance">
+                <ScalarProperty Name="Balanco" ColumnName="Balanco" />
+                <ScalarProperty Name="TotalOfQuantity" ColumnName="TotalOfQuantity" />
+                <ScalarProperty Name="SalesQuantity" ColumnName="SalesQuantity" />
+                <ScalarProperty Name="BuingQuantity" ColumnName="BuingQuantity" />
+                <ScalarProperty Name="Shopid" ColumnName="Shopid" />
+                <ScalarProperty Name="Pricein" ColumnName="Pricein" />
+                <ScalarProperty Name="MatirialName" ColumnName="MatirialName" />
+                <ScalarProperty Name="MatirialBarcode" ColumnName="MatirialBarcode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserPayment">
+            <EntityTypeMapping TypeName="smsModel.UserPayment">
+              <MappingFragment StoreEntitySet="UserPayment">
+                <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+                <ScalarProperty Name="Ammount" ColumnName="Ammount" />
+                <ScalarProperty Name="Ddate" ColumnName="Ddate" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HDD">
+            <EntityTypeMapping TypeName="smsModel.HDD">
+              <MappingFragment StoreEntitySet="HDD">
+                <ScalarProperty Name="HardDiskNo" ColumnName="HardDiskNo" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="MaxInvoice2" FunctionName="smsModel.Store.MaxInvoice" />
+          <FunctionImportMapping FunctionImportName="SalesSum" FunctionName="smsModel.Store.SalesSum" />
+          <EntitySetMapping Name="Matirails">
+            <EntityTypeMapping TypeName="smsModel.Matirails">
+              <MappingFragment StoreEntitySet="Matirails">
+                <ScalarProperty Name="Shopid" ColumnName="Shopid" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="exDate" ColumnName="exDate" />
+                <ScalarProperty Name="Profit" ColumnName="Profit" />
+                <ScalarProperty Name="PriceOut" ColumnName="PriceOut" />
+                <ScalarProperty Name="Pricein" ColumnName="Pricein" />
+                <ScalarProperty Name="MatirialName" ColumnName="MatirialName" />
+                <ScalarProperty Name="MatirialBarcode" ColumnName="MatirialBarcode" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalesInvoice">
+            <EntityTypeMapping TypeName="smsModel.SalesInvoice">
+              <MappingFragment StoreEntitySet="SalesInvoice">
+                <ScalarProperty Name="CashOrCredit" ColumnName="CashOrCredit" />
+                <ScalarProperty Name="Shopid" ColumnName="Shopid" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Ddate" ColumnName="Ddate" />
+                <ScalarProperty Name="Total_Profits" ColumnName="Total_Profits" />
+                <ScalarProperty Name="Profit_One_Item" ColumnName="Profit_One_Item" />
+                <ScalarProperty Name="Total_" ColumnName="Total_" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="MatiralName" ColumnName="MatiralName" />
+                <ScalarProperty Name="MatiralBarcode" ColumnName="MatiralBarcode" />
+                <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

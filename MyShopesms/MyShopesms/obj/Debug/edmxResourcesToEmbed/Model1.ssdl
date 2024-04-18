@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="smsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BuingInvoice">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InvoiceNo" Type="bigint" Nullable="false" />
+    <Property Name="MatirialBarcode" Type="bigint" Nullable="false" />
+    <Property Name="MatirialName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Quantity" Type="money" Nullable="false" />
+    <Property Name="Pricein" Type="money" Nullable="false" />
+    <Property Name="PriceOut" Type="money" Nullable="false" />
+    <Property Name="Total" Type="money" StoreGeneratedPattern="Computed" />
+    <Property Name="exDate" Type="date" Nullable="false" />
+    <Property Name="User_Id" Type="bigint" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Shopid" Type="int" Nullable="false" />
+    <Property Name="Ddate" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HDD">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HardDiskNo" Type="varchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Matirails">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MatirialBarcode" Type="bigint" Nullable="false" />
+    <Property Name="MatirialName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Pricein" Type="money" Nullable="false" />
+    <Property Name="PriceOut" Type="money" Nullable="false" />
+    <Property Name="Profit" Type="money" StoreGeneratedPattern="Computed" />
+    <Property Name="exDate" Type="date" Nullable="false" />
+    <Property Name="User_ID" Type="bigint" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Shopid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Procedures">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Procedure_type" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="InvoiceNo" Type="bigint" Nullable="false" />
+    <Property Name="Ammount" Type="money" Nullable="false" />
+    <Property Name="User_Id" Type="bigint" Nullable="false" />
+    <Property Name="User_Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ddate" Type="datetime" Nullable="false" />
+    <Property Name="ShopId" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SalesInvoice">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InvoiceNo" Type="bigint" Nullable="false" />
+    <Property Name="MatiralBarcode" Type="bigint" Nullable="false" />
+    <Property Name="MatiralName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Quantity" Type="money" Nullable="false" />
+    <Property Name="Price" Type="money" Nullable="false" />
+    <Property Name="Total_" Type="money" StoreGeneratedPattern="Computed" />
+    <Property Name="Profit_One_Item" Type="money" Nullable="false" />
+    <Property Name="Total_Profits" Type="money" StoreGeneratedPattern="Computed" />
+    <Property Name="Ddate" Type="date" Nullable="false" />
+    <Property Name="User_ID" Type="bigint" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Shopid" Type="int" Nullable="false" />
+    <Property Name="CashOrCredit" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Shops">
+    <Key>
+      <PropertyRef Name="Shopid" />
+    </Key>
+    <Property Name="Shopid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Shopname" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserPayment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Ddate" Type="date" Nullable="false" />
+    <Property Name="Ammount" Type="money" Nullable="false" />
+    <Property Name="ShopId" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="User_ID" />
+    </Key>
+    <Property Name="User_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="User_Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ShopId" Type="int" Nullable="false" />
+    <Property Name="ShopName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'sms.dbo.BuingView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="BuingView">
+    <Key>
+      <PropertyRef Name="MatirialBarcode" />
+      <PropertyRef Name="MatirialName" />
+      <PropertyRef Name="Shopid" />
+    </Key>
+    <Property Name="MatirialBarcode" Type="bigint" Nullable="false" />
+    <Property Name="MatirialName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Quantity" Type="decimal" Precision="38" Scale="0" />
+    <Property Name="Shopid" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'sms.dbo.SalesView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="SalesView">
+    <Key>
+      <PropertyRef Name="MatiralBarcode" />
+      <PropertyRef Name="MatiralName" />
+      <PropertyRef Name="Shopid" />
+    </Key>
+    <Property Name="MatiralBarcode" Type="bigint" Nullable="false" />
+    <Property Name="MatiralName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Quantity" Type="decimal" Precision="38" Scale="0" />
+    <Property Name="Shopid" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'sms.dbo.ViewAllBalance' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ViewAllBalance">
+    <Key>
+      <PropertyRef Name="MatirialBarcode" />
+      <PropertyRef Name="MatirialName" />
+      <PropertyRef Name="Pricein" />
+      <PropertyRef Name="Shopid" />
+    </Key>
+    <Property Name="MatirialBarcode" Type="bigint" Nullable="false" />
+    <Property Name="MatirialName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Pricein" Type="money" Nullable="false" />
+    <Property Name="Shopid" Type="int" Nullable="false" />
+    <Property Name="BuingQuantity" Type="decimal" Precision="38" Scale="0" />
+    <Property Name="SalesQuantity" Type="decimal" Precision="38" Scale="0" />
+    <Property Name="TotalOfQuantity" Type="decimal" Precision="38" Scale="0" />
+    <Property Name="Balanco" Type="decimal" Precision="38" Scale="4" />
+  </EntityType>
+  <Function Name="MaxInvoice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="shopId" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SalesSum" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ShopId" Type="bigint" Mode="In" />
+    <Parameter Name="Userid" Type="bigint" Mode="In" />
+  </Function>
+  <EntityContainer Name="smsModelStoreContainer">
+    <EntitySet Name="BuingInvoice" EntityType="Self.BuingInvoice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HDD" EntityType="Self.HDD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Matirails" EntityType="Self.Matirails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Procedures" EntityType="Self.Procedures" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SalesInvoice" EntityType="Self.SalesInvoice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Shops" EntityType="Self.Shops" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserPayment" EntityType="Self.UserPayment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BuingView" EntityType="Self.BuingView" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [BuingView].[MatirialBarcode] AS [MatirialBarcode], 
+    [BuingView].[MatirialName] AS [MatirialName], 
+    [BuingView].[Quantity] AS [Quantity], 
+    [BuingView].[Shopid] AS [Shopid]
+    FROM [dbo].[BuingView] AS [BuingView]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="SalesView" EntityType="Self.SalesView" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [SalesView].[MatiralBarcode] AS [MatiralBarcode], 
+    [SalesView].[MatiralName] AS [MatiralName], 
+    [SalesView].[Quantity] AS [Quantity], 
+    [SalesView].[Shopid] AS [Shopid]
+    FROM [dbo].[SalesView] AS [SalesView]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ViewAllBalance" EntityType="Self.ViewAllBalance" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ViewAllBalance].[MatirialBarcode] AS [MatirialBarcode], 
+    [ViewAllBalance].[MatirialName] AS [MatirialName], 
+    [ViewAllBalance].[Pricein] AS [Pricein], 
+    [ViewAllBalance].[Shopid] AS [Shopid], 
+    [ViewAllBalance].[BuingQuantity] AS [BuingQuantity], 
+    [ViewAllBalance].[SalesQuantity] AS [SalesQuantity], 
+    [ViewAllBalance].[TotalOfQuantity] AS [TotalOfQuantity], 
+    [ViewAllBalance].[Balanco] AS [Balanco]
+    FROM [dbo].[ViewAllBalance] AS [ViewAllBalance]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
