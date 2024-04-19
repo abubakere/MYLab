@@ -173,3 +173,6 @@ C:\Users\PC\Desktop\MP3\MyShopesms\MyShopesms\obj\Debug\MyShopesms.Properties.Re
 C:\Users\PC\Desktop\MP3\MyShopesms\MyShopesms\obj\Debug\MyShopesms.csproj.GenerateResource.Cache
 C:\Users\PC\Desktop\MP3\MyShopesms\MyShopesms\obj\Debug\RdlCompile.cache
 C:\Users\PC\Desktop\MP3\MyShopesms\MyShopesms\obj\Debug\RdlCompile.compiled
+C:\Users\PC\Desktop\Projects\MYLab\MyShopesms\MyShopesms\bin\Debug\MyShopesms.exe.config
+C:\Users\PC\Desktop\Projects\MYLab\MyShopesms\MyShopesms\obj\Debug\MyShopesms.exe
+C:\Users\PC\Desktop\Projects\MYLab\MyShopesms\MyShopesms\obj\Debug\MyShopesms.pdb
